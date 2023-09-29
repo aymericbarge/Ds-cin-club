@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em ; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+    .example-wrapper ul li {
+        list-style: none;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .example-wrapper ul li h2 {
+        margin: 0;
+    }
+
+    .example-wrapper ul {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    a{color: limegreen}
+</style>
+
+<div class="example-wrapper">
+    <h2> {{titre}} </h2>
+    <p> Consulter les films en projection </p>
+    <ul>
+
+    {% for film in film %}
+    <li>
+        <h2> {{film.titre}} </h2>
+        <sub> Sortie le :{{film.dateSortie|date('d/m/Y')}} </sub>
+        <sub> Pour une durée de :{{film.duree|date('H:i:s')}} </sub>
+        <h2><a href="{{ path('app_film_detail', {'id': film.id}) }}">Voir les détailles</a></h2>
+        </li>
+    {% endfor %}
+    
+    </ul>
+</div>
+{% endblock %}
